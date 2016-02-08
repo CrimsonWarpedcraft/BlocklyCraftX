@@ -67,7 +67,7 @@ CanaryMod and [download the CanaryMod server here][ic]
 If you don't want to compile the plugin from source, you can [download the
 compiled plugin here][dl] and copy it to the Minecraft server plugins directory.
 
-[dl]:#
+[dl]:https://github.com/bgon/BlocklyCraft/releases/download/v0.1-alpha/blocklycraft.jar
 # Post Install
 
 Once installed, a new scriptcraft/plugins directory is automatically
@@ -77,7 +77,7 @@ ops can use this plugin.* You can grant a player `op` privileges by
 typing 'op <username>' at the server console prompt or by adding the
 player's username to the ops.txt file in your server directory.
 
-Launch the server, then open [http://localhost:7070/blocklycraft/index.html][local] in a web browser. Create your first command by following the example below, don't forget to give a name to your command (`house` in the example) and then click the deploy red button on the top right, this will compile the javascript and install it on the Minecraft server.
+Launch the server, then open [http://localhost:7070][local] in a web browser. Create your first command by following the example below, don't forget to give a name to your command (`house` in the example) and then click the deploy red button on the top right, this will compile the javascript and install it on the Minecraft server.
 
 ![Hello Blockly](src/main/js/www/docs/hello_world_command.png?raw=true "")
 
@@ -106,7 +106,7 @@ command( 'hello', function ( parameters, player ) {
 All .js files in this directory will be automatically loaded when the server starts and reloaded each time you deploy from the Blockly visual programming editor
 
 
-[local]: http://localhost:7070/blocklycraft/index.html
+[local]: http://localhost:7070
 
 # Create a Paddock
 
