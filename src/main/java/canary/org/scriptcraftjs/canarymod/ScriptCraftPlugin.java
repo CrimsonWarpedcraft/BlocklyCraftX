@@ -20,6 +20,9 @@ import net.canarymod.Canary;
 import net.canarymod.hook.Dispatcher;
 import net.canarymod.hook.Hook;
 
+
+import org.scriptcraftjs.webserver.ScriptCraftWebServer;
+
 public class ScriptCraftPlugin extends Plugin implements PluginListener, CommandListener
 {
     public boolean canary = true;
@@ -28,8 +31,12 @@ public class ScriptCraftPlugin extends Plugin implements PluginListener, Command
         "ScriptCraft will not work without Javascript.";
     protected ScriptEngine engine = null;
 
+    protected ScriptCraftWebServer httpServer = new ScriptCraftWebServer();
+
     @Override
     public void disable(){
+        httpServer.stop();
+        this.getLogman().info("HTTP web server stopped");
         try { 
             ((Invocable)this.engine).invokeFunction("__onDisable", this.engine, this);
         }catch ( Exception e) {
@@ -56,6 +63,13 @@ public class ScriptCraftPlugin extends Plugin implements PluginListener, Command
             }
 
             Canary.commands().registerCommands(this, this, false);
+
+
+            httpServer.start();
+            this.getLogman().info(httpServer.getStartedLogMessage());
+            // httpServer.openURL();
+
+
         }catch(Exception e){
             e.printStackTrace();
             this.getLogman().error(e.getMessage());

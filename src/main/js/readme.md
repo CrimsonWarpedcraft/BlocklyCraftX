@@ -1,10 +1,10 @@
 # scriptcraft root directory
-
 This directory contains the following subdirectories...
 
- * lib - contains core scriptcraft modules and code.
- * modules - contains modules for use by others 
- * plugins - contains plugins (modules which are automatically loaded and globally-namespaced at startup)
+* lib - contains core scriptcraft modules and code.
+* modules - contains modules for use by others
+* plugins - contains plugins (modules which are automatically loaded and globally-namespaced at startup)
+* www - contains the blockly files to be served by ScriptCraftWebServer
 
 If you are a minecraft modder who wants to develop simple mods then the `plugins` location is where you should probably place your .js files. 
 

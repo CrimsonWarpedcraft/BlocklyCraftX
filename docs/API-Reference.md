@@ -468,6 +468,7 @@ Walter Higgins
    * [Usage](#usage-12)
  * [alias Plugin](#alias-plugin)
    * [Examples](#examples-2)
+ * [Watcher module](#watcher-module)
  * [Commando Plugin](#commando-plugin)
    * [Description](#description)
    * [Example hi-command.js](#example-hi-commandjs)
@@ -484,6 +485,8 @@ Walter Higgins
    * [How to Play](#how-to-play)
    * [Rules](#rules)
    * [Gameplay Mechanics](#gameplay-mechanics)
+ * [Blockly-Minecraft blocks](#blockly-minecraft-blocks)
+ * [Blockly -> ScriptCraft Javascript Code generator](#blockly---scriptcraft-javascript-code-generator)
  * [Items module](#items-module)
    * [Usage](#usage-13)
  * [Entities module](#entities-module)
@@ -5986,6 +5989,9 @@ Aliases can be used at the in-game prompt by players or in the server
 console.  Aliases will not be able to avail of command autocompletion
 (pressing the TAB key will have no effect).
 
+## Watcher module
+monitor the Blocklycraft scriptfolder. Automatic reload for any changes
+
 ## Commando Plugin
 
 ### Description
@@ -6175,6 +6181,16 @@ your own mini-game...
    mini-game?
 
 [bukscore]: http://jd.bukkit.org/beta/apidocs/org/bukkit/scoreboard/package-summary.html
+
+## Blockly-Minecraft blocks
+Lauro Canonica: Original author (Devoxx4kids Lugano 2015.04)
+
+Contains the description of the Minecraft blocks for Blockly
+
+## Blockly -> ScriptCraft Javascript Code generator
+Lauro Canonica: Original author (Devoxx4kids Lugano 2015.04)
+
+Contains the generator for the javascript used in scriptcraft
 
 
 ## Items module
