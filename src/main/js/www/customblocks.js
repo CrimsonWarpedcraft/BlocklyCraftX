@@ -19,7 +19,7 @@ var items_food = getObjNames(Blockly.Msg.ITEMS_NAMES, ['carrot', 'potato', 'coco
 var items_transportation = getObjNames(Blockly.Msg.ITEMS_NAMES, ['rails', 'poweredRail', 'redstoneTorchOn', 'minecart']);
 
 //http://minecraft.gamepedia.com/Armor
-var items_weapons_armor = getObjNames(Blockly.Msg.ITEMS_NAMES, ['bow', 'arrow', 'diamondBoots', 'diamondChestplate', 'diamondHelmet', 'diamondLeggings', 'tnt']);
+var items_weapons_armor = getObjNames(Blockly.Msg.ITEMS_NAMES, ['bow', 'arrow', 'diamondSword','diamondBoots', 'diamondChestplate', 'diamondHelmet', 'diamondLeggings', 'tnt']);
 
 //Spawn passive and pameable animals http://minecraft.gamepedia.com/Mob
 var animals = getObjNames(Blockly.Msg.ANIMALS_NAMES, ['BAT', 'CHICKEN', 'COW', 'PIG', 'RABBIT', 'WOLF', 'SHEEP', 'HORSE', 'OCELOT']);

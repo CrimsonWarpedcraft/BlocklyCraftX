@@ -114,6 +114,7 @@ Blockly.Msg.ITEMS_NAMES.redstoneTorchOn = "Redstone Torch (active)";
 //weapons & armor
 Blockly.Msg.ITEMS_NAMES.bow = "Bow";
 Blockly.Msg.ITEMS_NAMES.arrow = "Arrow";
+Blockly.Msg.ITEMS_NAMES.diamondSword = "Diamond Sword";
 Blockly.Msg.ITEMS_NAMES.diamondBoots = "Diamond Boots";
 Blockly.Msg.ITEMS_NAMES.diamondChestplate = "Diamond Chestplate";
 Blockly.Msg.ITEMS_NAMES.diamondHelmet = "Diamond Helmet";
