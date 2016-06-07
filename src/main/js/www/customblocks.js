@@ -7,7 +7,7 @@ Contains the description of the Minecraft blocks for Blockly
 ***/
 
 //Naturally generated and created material blocks http://minecraft.gamepedia.com/Block 
-var materials = getObjNames(Blockly.Msg.OBJNAMES, [0, 1, 2, 3, 4, 7, 8, 10, 12, 13, 14, 15, 16, 17, 18, 20, 21, 24, 27, 31, 32, 37, 38, 39, 40, 46, 49, 51, 56, 66, 73, 78, 79, 80, 81, 82, 83, 85, 86, 99, 100, 103, 106, 110, 111, 129, 159, 161, 162, 172, 174, 175]);
+var materials = getObjNames(Blockly.Msg.OBJNAMES, [0, 1, 2, 3, 4, 7, 8, 10, 12, 13, 14, 15, 16, 17, 18, 20, 21, 24, 27, 31, 32, 37, 38, 39, 40, 41, 44, 46, 49, 51, 55, 56, 65, 66, 73, 78, 79, 80, 81, 82, 83, 85, 86, 93, 99, 100, 103, 106, 110, 111, 129, 152, 159, 161, 162, 172, 174, 175]);
 
 //http://minecraft.gamepedia.com/Tools
 var items_tools = getObjNames(Blockly.Msg.ITEMS_NAMES, ['diamondAxe', 'diamondHoe', 'diamondSpade', 'diamondPickaxe', 'shears', 'flintAndSteel', 'fishingRod', 'bed', 'torch']);
@@ -19,7 +19,7 @@ var items_food = getObjNames(Blockly.Msg.ITEMS_NAMES, ['carrot', 'potato', 'coco
 var items_transportation = getObjNames(Blockly.Msg.ITEMS_NAMES, ['rails', 'poweredRail', 'redstoneTorchOn', 'minecart']);
 
 //http://minecraft.gamepedia.com/Armor
-var items_weapons_armor = getObjNames(Blockly.Msg.ITEMS_NAMES, ['bow', 'arrow', 'diamondSword','diamondBoots', 'diamondChestplate', 'diamondHelmet', 'diamondLeggings', 'tnt']);
+var items_weapons_armor = getObjNames(Blockly.Msg.ITEMS_NAMES, ['bow', 'arrow', 'diamondSword', 'diamondBoots', 'diamondChestplate', 'diamondHelmet', 'diamondLeggings', 'tnt']);
 
 //Spawn passive and pameable animals http://minecraft.gamepedia.com/Mob
 var animals = getObjNames(Blockly.Msg.ANIMALS_NAMES, ['BAT', 'CHICKEN', 'COW', 'PIG', 'RABBIT', 'WOLF', 'SHEEP', 'HORSE', 'OCELOT']);
@@ -34,7 +34,7 @@ function getObjNames(list, ids) {
         //TODO - switch to english translation file in case of a non-existent translation
         for (i = 0; i < ids.length; i++) {
             id = '';
-            if (typeof(ids[i]) == "number") {
+            if (typeof (ids[i]) == "number") {
                 id = "'" + ids[i] + "'";
             } else {
                 id = ids[i];
@@ -44,7 +44,7 @@ function getObjNames(list, ids) {
     } else {
         for (i = 0; i < ids.length; i++) {
             id = '';
-            if (typeof(ids[i]) == "number") {
+            if (typeof (ids[i]) == "number") {
                 id = "'" + ids[i] + "'";
             } else {
                 id = ids[i];
@@ -56,7 +56,7 @@ function getObjNames(list, ids) {
 }
 
 Blockly.Blocks['drone'] = {
-    init: function() {
+    init: function () {
         this.appendStatementInput("statements")
             .setCheck("")
             .appendField(Blockly.Msg.DRONE)
@@ -69,7 +69,7 @@ Blockly.Blocks['drone'] = {
 };
 
 Blockly.Blocks['materials'] = {
-    init: function() {
+    init: function () {
         this.appendDummyInput()
             .appendField(Blockly.Msg.MATERIALS)
             .appendField(new Blockly.FieldDropdown(materials), "material");
@@ -83,7 +83,7 @@ Blockly.Blocks['materials'] = {
 };
 
 Blockly.Blocks['animals'] = {
-    init: function() {
+    init: function () {
         this.appendDummyInput()
             .appendField(Blockly.Msg.ANIMALS)
             .appendField(new Blockly.FieldDropdown(animals), "animal");
@@ -96,22 +96,22 @@ Blockly.Blocks['animals'] = {
 };
 
 Blockly.Blocks['drone_move'] = {
-    init: function() {
+    init: function () {
         this.appendDummyInput()
             .appendField(Blockly.Msg.MOUVEMENT)
             .appendField(
-                new Blockly.FieldDropdown([
-                    [Blockly.Msg.MOUVEMENT_UP, "up()"],
-                    [Blockly.Msg.MOUVEMENT_DOWN, "down()"],
-                    [Blockly.Msg.MOUVEMENT_FWD, "fwd()"],
-                    [Blockly.Msg.MOUVEMENT_BACK, "back()"],
-                    [Blockly.Msg.MOUVEMENT_RIGHT, "right()"],
-                    [Blockly.Msg.MOUVEMENT_LEFT, "left()"],
-                    [Blockly.Msg.MOUVEMENT_TURN_RIGHT, "turn()"],
-                    [Blockly.Msg.MOUVEMENT_TURN_LEFT, "turn(2)"],
-                    [Blockly.Msg.MOUVEMENT_BACKTOSTART, "move('start')"],
-                    [Blockly.Msg.MOUVEMENT_SAVESTART, "chkpt('start')"]
-                ]), "direction");
+            new Blockly.FieldDropdown([
+                [Blockly.Msg.MOUVEMENT_UP, "up()"],
+                [Blockly.Msg.MOUVEMENT_DOWN, "down()"],
+                [Blockly.Msg.MOUVEMENT_FWD, "fwd()"],
+                [Blockly.Msg.MOUVEMENT_BACK, "back()"],
+                [Blockly.Msg.MOUVEMENT_RIGHT, "right()"],
+                [Blockly.Msg.MOUVEMENT_LEFT, "left()"],
+                [Blockly.Msg.MOUVEMENT_TURN_RIGHT, "turn()"],
+                [Blockly.Msg.MOUVEMENT_TURN_LEFT, "turn(2)"],
+                [Blockly.Msg.MOUVEMENT_BACKTOSTART, "move('start')"],
+                [Blockly.Msg.MOUVEMENT_SAVESTART, "chkpt('start')"]
+            ]), "direction");
         this.setInputsInline(true);
         this.setPreviousStatement(true);
         this.setNextStatement(true);
@@ -122,7 +122,7 @@ Blockly.Blocks['drone_move'] = {
 };
 
 Blockly.Blocks['rectangle'] = {
-    init: function() {
+    init: function () {
         this.appendDummyInput()
             .appendField(Blockly.Msg.RECTANGLE);
         this.appendDummyInput()
@@ -147,7 +147,7 @@ Blockly.Blocks['rectangle'] = {
 };
 
 Blockly.Blocks['circle'] = {
-    init: function() {
+    init: function () {
         this.appendDummyInput()
             .appendField(Blockly.Msg.CIRCLE);
         this.appendDummyInput()
@@ -169,7 +169,7 @@ Blockly.Blocks['circle'] = {
 };
 
 Blockly.Blocks['delete'] = {
-    init: function() {
+    init: function () {
         this.appendDummyInput()
             .appendField(Blockly.Msg.DELETE);
         this.appendValueInput("width").setCheck("Number")
@@ -188,7 +188,7 @@ Blockly.Blocks['delete'] = {
 };
 
 Blockly.Blocks['inventory'] = {
-    init: function() {
+    init: function () {
         this.appendStatementInput("statements")
             .setCheck("")
             .appendField(Blockly.Msg.INVENTORY)
@@ -201,7 +201,7 @@ Blockly.Blocks['inventory'] = {
 };
 
 Blockly.Blocks['tools'] = {
-    init: function() {
+    init: function () {
         this.appendDummyInput()
             .appendField(Blockly.Msg.ITEMS_TOOLS)
             .appendField(new Blockly.FieldDropdown(items_tools), "item");
@@ -214,7 +214,7 @@ Blockly.Blocks['tools'] = {
 };
 
 Blockly.Blocks['food'] = {
-    init: function() {
+    init: function () {
         this.appendDummyInput()
             .appendField(Blockly.Msg.ITEMS_FOOD)
             .appendField(new Blockly.FieldDropdown(items_food), "item");
@@ -227,7 +227,7 @@ Blockly.Blocks['food'] = {
 };
 
 Blockly.Blocks['transportation'] = {
-    init: function() {
+    init: function () {
         this.appendDummyInput()
             .appendField(Blockly.Msg.ITEMS_TRANSPORTATION)
             .appendField(new Blockly.FieldDropdown(items_transportation), "item");
@@ -240,7 +240,7 @@ Blockly.Blocks['transportation'] = {
 };
 
 Blockly.Blocks['weapons_armor'] = {
-    init: function() {
+    init: function () {
         this.appendDummyInput()
             .appendField(Blockly.Msg.ITEMS_WEAPONS_ARMOR)
             .appendField(new Blockly.FieldDropdown(items_weapons_armor), "item");
