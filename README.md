@@ -67,7 +67,7 @@ CanaryMod and [download the CanaryMod server here][ic]
 If you don't want to compile the plugin from source, you can [download the
 compiled plugin here][dl] and copy it to the Minecraft server plugins directory.
 
-[dl]:https://github.com/bgon/BlocklyCraft/releases/download/v0.1-alpha/blocklycraft.jar
+[dl]:https://github.com/bgon/BlocklyCraft/releases/
 # Post Install
 
 Once installed, a new scriptcraft/plugins directory is automatically
