@@ -6,7 +6,7 @@ Contains the generator for the javascript used in scriptcraft
 
 ***/
 
-Blockly.JavaScript['drone'] = function(block) {
+Blockly.JavaScript['drone'] = function (block) {
     var fname = block.getFieldValue('param');
     var statements_statements = Blockly.JavaScript.statementToCode(block, 'statements');
     var code = "command( '" + fname + "', function ( parameters, player ) {\nvar theDrone = new Drone(player);\ntheDrone.up();\ntheDrone.chkpt('start');\n";
@@ -16,25 +16,25 @@ Blockly.JavaScript['drone'] = function(block) {
     return code;
 };
 
-Blockly.JavaScript['drone_move'] = function(block) {
+Blockly.JavaScript['drone_move'] = function (block) {
     var dropdown_direction = block.getFieldValue('direction');
     var code = "theDrone." + dropdown_direction + ";\n";
     return code;
 };
 
-Blockly.JavaScript['materials'] = function(block) {
+Blockly.JavaScript['materials'] = function (block) {
     var dropdown_material = block.getFieldValue('material');
     var code = "theDrone." + 'box(' + dropdown_material + ');\n';
     return code;
 };
 
-Blockly.JavaScript['animals'] = function(block) {
+Blockly.JavaScript['animals'] = function (block) {
     var dropdown_animal = block.getFieldValue('animal');
     var code = "if (__plugin.bukkit) {\n        theDrone.getLocation().world.spawnEntity(theDrone.getLocation(), org.bukkit.entity.EntityType." + dropdown_animal + ");\n    }\n    if (__plugin.canary) {\n        var Canary = Packages.net.canarymod.Canary,\n            entityInstance = Canary.factory().entityFactory.newEntity('" + dropdown_animal + "', theDrone.getLocation());\n        entityInstance.spawn();\n    }";
     return code;
 };
 
-Blockly.JavaScript['rectangle'] = function(block) {
+Blockly.JavaScript['rectangle'] = function (block) {
     var value_width = Blockly.JavaScript.valueToCode(block, 'width', Blockly.JavaScript.ORDER_ATOMIC);
     var value_lenght = Blockly.JavaScript.valueToCode(block, 'lenght', Blockly.JavaScript.ORDER_ATOMIC);
     var dropdown_material = block.getFieldValue('material');
@@ -43,7 +43,7 @@ Blockly.JavaScript['rectangle'] = function(block) {
     return code;
 };
 
-Blockly.JavaScript['circle'] = function(block) {
+Blockly.JavaScript['circle'] = function (block) {
     var value_radius = Blockly.JavaScript.valueToCode(block, 'radius', Blockly.JavaScript.ORDER_ATOMIC);
     var dropdown_material = block.getFieldValue('material');
     var dropdown_fill = block.getFieldValue('fill');
@@ -51,7 +51,7 @@ Blockly.JavaScript['circle'] = function(block) {
     return code;
 };
 
-Blockly.JavaScript['delete'] = function(block) {
+Blockly.JavaScript['delete'] = function (block) {
     var value_width = Blockly.JavaScript.valueToCode(block, 'width', Blockly.JavaScript.ORDER_ATOMIC);
     var value_height = Blockly.JavaScript.valueToCode(block, 'height', Blockly.JavaScript.ORDER_ATOMIC);
     var value_lenght = Blockly.JavaScript.valueToCode(block, 'lenght', Blockly.JavaScript.ORDER_ATOMIC);
@@ -59,7 +59,7 @@ Blockly.JavaScript['delete'] = function(block) {
     return code;
 };
 
-Blockly.JavaScript['inventory'] = function(block) {
+Blockly.JavaScript['inventory'] = function (block) {
     var fname = block.getFieldValue('param');
     var statements_statements = Blockly.JavaScript.statementToCode(block, 'statements');
     var code = "var inventory = require('inventory');\nvar items = require('items');\ncommand( '" + fname + "', function ( parameters, player ) {\nvar theInventory = new inventory(player);\n";
@@ -69,26 +69,26 @@ Blockly.JavaScript['inventory'] = function(block) {
     return code;
 };
 
-Blockly.JavaScript['weapons_armor'] = function(block) {
+Blockly.JavaScript['weapons_armor'] = function (block) {
     var dropdown_item = block.getFieldValue('item');
     var code = "theInventory.add(items." + dropdown_item + "(1))" + ";\n";
     return code;
 };
 
 
-Blockly.JavaScript['tools'] = function(block) {
+Blockly.JavaScript['tools'] = function (block) {
     var dropdown_item = block.getFieldValue('item');
     var code = "theInventory.add(items." + dropdown_item + "(1))" + ";\n";
     return code;
 };
 
-Blockly.JavaScript['food'] = function(block) {
+Blockly.JavaScript['food'] = function (block) {
     var dropdown_item = block.getFieldValue('item');
     var code = "theInventory.add(items." + dropdown_item + "(1))" + ";\n";
     return code;
 };
 
-Blockly.JavaScript['transportation'] = function(block) {
+Blockly.JavaScript['transportation'] = function (block) {
     var dropdown_item = block.getFieldValue('item');
     var code = "theInventory.add(items." + dropdown_item + "(1))" + ";\n";
     return code;
