@@ -35,7 +35,7 @@ exports.watchFile = function( file, callback ) {
   }
   filesWatched[file.canonicalPath] = {
     callback: callback,
-    lastModified: file.lastModified()
+    lastModified: Number(file.lastModified())
   };
 };
 
@@ -70,7 +70,7 @@ exports.watchDir = function( dir, callback ) {
   }
   dirsWatched[dir.canonicalPath] = {
     callback: callback,
-    lastModified: dir.lastModified()
+    lastModified: Number(dir.lastModified())
   };
   
   var files = dir.listFiles(),file;
@@ -146,7 +146,7 @@ exports.unwatchDir = function( dir, callback ) {
 function fileWatcher(calledCallbacks) {
   for (var file in filesWatched) {
     var fileObject = new File(file);
-    var lm = fileObject.lastModified();
+    var lm = Number(fileObject.lastModified());
     if ( lm != filesWatched[file].lastModified ) {
       filesWatched[file].lastModified = lm;
       filesWatched[file].callback(fileObject);
@@ -164,7 +164,7 @@ function fileWatcher(calledCallbacks) {
 function dirWatcher(calledCallbacks) {
   for (var dir in dirsWatched) {
     var dirObject = new File(dir);
-    var lm = dirObject.lastModified();
+    var lm = Number(dirObject.lastModified());
     var dw = dirsWatched[dir];
     if ( lm != dirsWatched[dir].lastModified ) {
       dirsWatched[dir].lastModified = lm;
