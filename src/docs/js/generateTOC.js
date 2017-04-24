@@ -40,11 +40,11 @@ for (var i = 0; i < contents.length; i++){
     if (line.match(/^##\s+/)){
         var h2 = line.match(/^##\s+(.*)/)[1].trim();
         var link = createLink(h2);
-        java.lang.System.out.println (' * [' + h2 + '](#' + link + ')');
+        java.lang.System.out.println(' * [' + h2 + '](#' + link + ')');
     }
     if (line.match(/^###\s+/)){
         var h3 = line.match(/^###\s+(.*)/)[1].trim();
         var link = createLink(h3);
-        java.lang.System.out.println ('   * [' + h3 + '](#' + link + ')');
+        java.lang.System.out.println('   * [' + h3 + '](#' + link + ')');
     }
 }

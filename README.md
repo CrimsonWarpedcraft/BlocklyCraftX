@@ -74,8 +74,9 @@ Once installed, a new scriptcraft/plugins directory is automatically
 created.  All files in the scriptcraft/plugins directory will be
 automatically loaded when the server starts.  *Only players who are
 ops can use this plugin.* You can grant a player `op` privileges by
-typing 'op <username>' at the server console prompt or by adding the
-player's username to the ops.txt file in your server directory.
+typing 'op <username>' (replacing <username> with your own Minecraft
+user name) at the server console prompt or by adding the player's
+username to the ops.txt file in your server directory.
 
 Launch the server, then open [http://localhost:7070][local] in a web browser. Create your first command by following the example below, don't forget to give a name to your command (`house` in the example) and then click the deploy red button on the top right, this will compile the javascript and install it on the Minecraft server.
 
