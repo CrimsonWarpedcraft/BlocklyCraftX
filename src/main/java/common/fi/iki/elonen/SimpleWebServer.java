@@ -366,7 +366,7 @@ public class SimpleWebServer extends NanoHTTPD {
     /**
      * Serves file from homeDir and its' subdirectories (only). Uses only URI, ignores all headers and HTTP parameters.
      */
-    Response serveFile(String uri, Map<String, String> header, File file, String mime) {
+    public Response serveFile(String uri, Map<String, String> header, File file, String mime) {
         Response res;
         try {
             // Calculate etag

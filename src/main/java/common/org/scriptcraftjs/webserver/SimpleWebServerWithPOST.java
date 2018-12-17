@@ -31,10 +31,6 @@ public class SimpleWebServerWithPOST extends SimpleWebServer {
 	}
 
 	public Response serve(IHTTPSession session) {
-		if (!Method.POST.equals(session.getMethod())) {
-			return super.serve(session);
-		} // else: handle a POST now...
-		
 //        if (session.getUri().length() < 2) {
 //            return createResponse(Response.Status.BAD_REQUEST, NanoHTTPD.MIME_PLAINTEXT, "URI too short to POST to: " + session.getUri());
 //        }
@@ -44,21 +40,38 @@ public class SimpleWebServerWithPOST extends SimpleWebServer {
 //            // throw new IllegalArgumentException("Invalid POST URI: " + uri);
 //            return createResponse(Response.Status.FORBIDDEN, NanoHTTPD.MIME_PLAINTEXT, "Invalid POST URI: " + uri);
 //        }
-        
-        Map<String, String> headers = session.getHeaders();
-        if (!headers.containsKey(CONTENT_LENGTH)) {
-            return createResponse(Response.Status.BAD_REQUEST, NanoHTTPD.MIME_PLAINTEXT, "Missing header " + CONTENT_LENGTH);        	
-        }
-        int size = Integer.parseInt(headers.get(CONTENT_LENGTH));
 
-        String IP = headers.get("http-client-ip").replaceAll("[:.]", "");
-        File file = new File(httpPostDirectory, /*uri*/ IP + "_" + FILE_SUFFIX);
-        InputStream is = session.getInputStream();
-        try {
+		File file;
+		Map<String, String> headers = session.getHeaders();
+
+		if (session.getMethod().equals(Method.POST) && session.getUri().equals("/")) {	//Saves js data to appropriate file
+			String IP = headers.get("http-client-ip").replaceAll("[:.]", "");
+			file = new File(httpPostDirectory, /*uri*/ IP + "_" + FILE_SUFFIX);
+		} else if (session.getMethod().equals(Method.POST) && session.getUri().equals("/workspace.xml")) {	//Saves xml data to appropriate file
+			file = new File(httpPostDirectory, "workspace.xml");
+		} else if (session.getMethod().equals(Method.GET) && session.getUri().equals("/workspace.xml")) {	//Downloads xml data
+			file = new File(httpPostDirectory, "workspace.xml");
+
+			if (file.exists()) {
+				return super.serveFile(session.getUri(), session.getHeaders(), file, "application\\xml");
+			} else {
+				return getNotFoundResponse();
+			}
+		} else {
+			return super.serve(session);
+		}
+
+		if (!headers.containsKey(CONTENT_LENGTH)) {
+			return createResponse(Response.Status.BAD_REQUEST, NanoHTTPD.MIME_PLAINTEXT, "Missing header " + CONTENT_LENGTH);
+		}
+		int size = Integer.parseInt(headers.get(CONTENT_LENGTH));
+		InputStream is = session.getInputStream();
+
+		try {
 			copy(is, size, file);
 		} catch (IOException e) {
 			e.printStackTrace(); // TODO real logging.. but PITA in ScriptScraft, as it targets two Server APIs
-            return createResponse(Response.Status.INTERNAL_ERROR, NanoHTTPD.MIME_PLAINTEXT, e.getMessage());
+			return createResponse(Response.Status.INTERNAL_ERROR, NanoHTTPD.MIME_PLAINTEXT, e.getMessage());
 		}
         
         return createResponse(Response.Status.OK, NanoHTTPD.MIME_PLAINTEXT, "OK");
@@ -83,5 +96,10 @@ public class SimpleWebServerWithPOST extends SimpleWebServer {
 	        safeClose(os);
 	        // do *NOT* safeClose(is);
 		}
+	}
+
+	protected Response send(InputStream is, int size, File targetFile) throws IOException {
+
+		return createResponse(Response.Status.OK, NanoHTTPD.MIME_PLAINTEXT, "OK");
 	}
 }

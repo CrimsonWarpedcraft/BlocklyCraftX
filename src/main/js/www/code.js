@@ -113,6 +113,35 @@ Code.loadBlocks = function (defaultXml) {
     }
 };
 
+Code.handleFileData = function (fileData) {
+    if (!fileData) {
+        Code.loadBlocks('');
+    } else {
+        Blockly.Xml.domToWorkspace(Blockly.Xml.textToDom(fileData), Code.workspace);
+    }
+};
+
+Code.getAndLoadBlocks = function (callback) {
+    var xhttp;
+    if (window.XMLHttpRequest) {
+        xhttp = new XMLHttpRequest();
+    } else {
+        // code for IE6, IE5
+        xhttp = new ActiveXObject("Microsoft.XMLHTTP");
+    }
+    xhttp.onreadystatechange = function() {
+        if (xhttp.readyState == 4) {
+            if (xhttp.status == 200) {
+                callback(xhttp.responseText);
+            } else {
+                callback(null);
+            }
+        }
+    };
+    xhttp.open("GET", "/workspace.xml");
+    xhttp.send();
+};
+
 /**
  * Save the blocks and reload with a different language.
  */
@@ -360,7 +389,8 @@ Code.init = function () {
     // and the infinite loop detection function.
     Blockly.JavaScript.addReservedWords('code,timeouts,checkTimeout');
 
-    Code.loadBlocks('');
+    Code.getAndLoadBlocks(Code.handleFileData);
+
 
     if ('BlocklyStorage' in window) {
         // Hook a save function onto unload.
@@ -377,26 +407,37 @@ Code.init = function () {
 
     Code.bindClick('deployButton', function () {
         var jscode = Blockly.JavaScript.workspaceToCode(Code.workspace);
+        var xmlcode = Blockly.Xml.domToText(Blockly.Xml.workspaceToDom(Code.workspace));
         var titleRegexp = /command. '(.+)',/;
         var fname = titleRegexp.exec(jscode); //extract the name of the command
         if (fname === null) {
             alert(Blockly.Msg.MISSING_NAME);
         } else {
             //alert(jscode);
-            var xhttp;
+            var jsxhttp;
+            var xmlxhttp;
             if (window.XMLHttpRequest) {
-                xhttp = new XMLHttpRequest();
+                jsxhttp = new XMLHttpRequest();
+                xmlxhttp = new XMLHttpRequest();
             } else {
                 // code for IE6, IE5
-                xhttp = new ActiveXObject("Microsoft.XMLHTTP");
+                jsxhttp = new ActiveXObject("Microsoft.XMLHTTP");
+                xmlxhttp = new ActiveXObject("Microsoft.XMLHTTP");
             }
-            xhttp.onreadystatechange = function () {
-                if (xhttp.readyState == 4 && xhttp.status == 200) {
+            jsxhttp.onreadystatechange = function () {
+                if (jsxhttp.readyState == 4 && jsxhttp.status == 200) {
                     alert(Blockly.Msg.DEPLOY_SUCCESS);
                 }
             };
-            xhttp.open('POST', '/', true);
-            xhttp.send(jscode);
+            xmlxhttp.onreadystatechange = function () {
+                if (xmlxhttp.readyState == 4 && xmlxhttp.status == 200) {
+                    //alert(Blockly.Msg.DEPLOY_SUCCESS);
+                }
+            };
+            jsxhttp.open('POST', '/', true);
+            jsxhttp.send(jscode);
+            xmlxhttp.open('POST', '/workspace.xml', true);
+            xmlxhttp.send(xmlcode);
         }
     });
     // Disable the link button if page isn't backed by App Engine storage.
