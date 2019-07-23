@@ -3,6 +3,8 @@ var MSG = {
     blocks: "Blocks",
     linkTooltip: "Save and link to blocks.",
     deployTooltip: "Deploy the program defined by the blocks in the workspace.",
+    importTooltip: "Upload save file to load a previously saved project.",
+    exportTooltip: "Download save file to save the current project.",
     badCode: "Program error:\n%1",
     timeout: "Maximum execution iterations exceeded.",
     trashTooltip: "Discard all blocks.",
@@ -54,6 +56,8 @@ Blockly.Msg.MOUVEMENT_BACKTOSTART = "go back to start";
 Blockly.Msg.MOUVEMENT_SAVESTART = "save this start";
 
 Blockly.Msg.DEPLOY_SUCCESS = "Perfect, now you can test your command in Minecraft";
+Blockly.Msg.EXPORT_SUCCESS = "Your file has been successfully exported!";
+Blockly.Msg.IMPORT_SUCCESS = "Your file has been successfully imported!";
 Blockly.Msg.MISSING_NAME = "Your command doesn't have a name.";
 
 Blockly.Msg.TOOLTIP_DRONE = "Construct a Drone Object";

@@ -1,0 +1,15 @@
+/*
+ * Images below are from FontAwesome. No changes made other than resizing.
+ * No copyright infringement intended. Copyrights to FontAwesome images are held by Fonticons, Inc. All rights reserved.
+ * Link to license: https://fontawesome.com/license/free
+*/
+.icon21alt {
+    height: 21px;
+    width: 21px;
+}
+.import {
+    background-image: url(img/import.png);
+}
+.export {
+    background-image: url(img/export.png);
+}

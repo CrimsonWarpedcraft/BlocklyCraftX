@@ -405,6 +405,52 @@ Code.init = function () {
             Code.renderContent();
         });
 
+    Code.bindClick('exportButton', function() {
+        var xmlcode = Blockly.Xml.domToText(Blockly.Xml.workspaceToDom(Code.workspace));
+
+        var file = new Blob([xmlcode], {type: "application\\xml"});
+        if (window.navigator.msSaveOrOpenBlob) // IE10+
+            window.navigator.msSaveOrOpenBlob(file, "blockly_project.xml");
+        else { // Others
+            var a = document.createElement("a"),
+                url = URL.createObjectURL(file);
+            a.href = url;
+            a.download = "blockly_project.xml";
+            document.body.appendChild(a);
+            a.click();
+            setTimeout(function() {
+                document.body.removeChild(a);
+                window.URL.revokeObjectURL(url);
+            }, 0);
+        }
+    });
+
+    Code.bindClick('importButton', function() {
+        var input = document.createElement('input');
+        input.type = 'file';
+
+        input.onchange = function(e) {
+            var file = window.URL.createObjectURL(e.target.files[0]);
+
+            var rawFile = new XMLHttpRequest();
+            rawFile.open("GET", file, false);
+            rawFile.onreadystatechange = function () {
+                if(rawFile.readyState === 4)
+                {
+                    if(rawFile.status === 200 || rawFile.status === 0)
+                    {
+                        var allText = rawFile.responseText;
+                        console.log(allText);
+                        Blockly.Xml.clearWorkspaceAndLoadFromXml(Blockly.Xml.textToDom(allText), Code.workspace);
+                    }
+                }
+            };
+            rawFile.send(null);
+        };
+
+        input.click();
+    });
+
     Code.bindClick('deployButton', function () {
         var jscode = Blockly.JavaScript.workspaceToCode(Code.workspace);
         var xmlcode = Blockly.Xml.domToText(Blockly.Xml.workspaceToDom(Code.workspace));
@@ -513,6 +559,8 @@ Code.initLanguage = function () {
     document.getElementById('tab_blocks').textContent = MSG.blocks;
     document.getElementById('linkButton').title = MSG.linkTooltip;
     document.getElementById('deployButton').title = MSG.deployTooltip;
+    document.getElementById('importButton').title = MSG.importTooltip;
+    document.getElementById('exportButton').title = MSG.exportTooltip;
     document.getElementById('trashButton').title = MSG.trashTooltip;
 
     var categories = ['catLogic', 'catLoops', 'catMath', 'catText', 'catLists',
