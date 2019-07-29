@@ -47,16 +47,6 @@ public class SimpleWebServerWithPOST extends SimpleWebServer {
 
 		if (session.getMethod().equals(Method.POST) && session.getUri().equals("/")) {	//Saves js data to appropriate file
 			file = new File(httpPostDirectory, /*uri*/ IP + "_" + FILE_SUFFIX);
-		} else if (session.getMethod().equals(Method.POST) && session.getUri().equals("/workspace.xml")) {	//Saves xml data to appropriate file
-			file = new File(httpPostDirectory, IP + "_workspace.xml");
-		} else if (session.getMethod().equals(Method.GET) && session.getUri().equals("/workspace.xml")) {	//Downloads xml data
-			file = new File(httpPostDirectory, IP + "_workspace.xml");
-
-			if (file.exists()) {
-				return super.serveFile(session.getUri(), session.getHeaders(), file, "application\\xml");
-			} else {
-				return getNotFoundResponse();
-			}
 		} else {
 			return super.serve(session);
 		}
